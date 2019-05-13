@@ -33,7 +33,7 @@ while True:
         break
     elif saisi > nombre :
         print("trop grand")
-        borne2 = borne2 - 1
+        borne2 = saisi - 1
     else :
         print("trop petit")
-        borne1 = borne1 + 1
+        borne1 = saisi + 1
