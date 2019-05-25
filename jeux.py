@@ -22,26 +22,37 @@ def menu_personnaliser() :
             borne2 = input("Saisissez un nombre qui sera la plus grande borne :")
     jouer(borne1, borne2)
 
+def condition_jeu(saisi, nombre, borne1, borne2):
+    if saisi == nombre :
+        print("c'est gagné")
+    elif saisi > nombre :
+        print("trop grand")
+        if borne2 >= saisi :
+            borne2 = saisi - 1
+    else :
+        print("trop petit")
+        if borne1 <= saisi :
+            borne1 = saisi + 1
+    return borne1, borne2
+
 def jouer(borne1, borne2):
     nombre = random.randint(borne1, borne2)
     while True:
-        print("Saisissez un nombre entre ", borne1, " et ", borne2, " :")
-        saisi = input()
+        invite = "Saisissez un nombre entre " + str(borne1) + " et " + str(borne2) + " :"
+        saisi = input(invite)
         try :
             saisi = int(saisi)
         except:
-            saisi = input("Saisissez un nombre :")
-        if saisi == nombre :
-            print("c'est gagné")
+            saisi = input(invite)
+        borne1, borne2 = condition_jeu(saisi, nombre, borne1, borne2)
+        if borne1 == borne2 :
             break
-        elif saisi > nombre :
-            print("trop grand")
-            if borne2 >= saisi :
-                borne2 = saisi - 1
-        else :
-            print("trop petit")
-            if borne1 <= saisi :
-                borne1 = saisi + 1
+        saisi = random.randint(borne1, borne2)
+        print(saisi)
+        borne1, borne2 = condition_jeu(saisi, nombre, borne1, borne2)
+        if borne1 == borne2 :
+            break
+
 
 def menu_niveau() :
     # menu des niveaux
