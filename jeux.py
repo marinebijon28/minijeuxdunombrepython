@@ -25,6 +25,7 @@ def menu_personnaliser() :
 def condition_jeu(saisi, nombre, borne1, borne2):
     if saisi == nombre :
         print("c'est gagné")
+        return borne1, borne2, True
     elif saisi > nombre :
         print("trop grand")
         if borne2 >= saisi :
@@ -33,7 +34,7 @@ def condition_jeu(saisi, nombre, borne1, borne2):
         print("trop petit")
         if borne1 <= saisi :
             borne1 = saisi + 1
-    return borne1, borne2
+    return borne1, borne2, False
 
 def jouer(borne1, borne2):
     nombre = random.randint(borne1, borne2)
@@ -44,13 +45,13 @@ def jouer(borne1, borne2):
             saisi = int(saisi)
         except:
             saisi = input(invite)
-        borne1, borne2 = condition_jeu(saisi, nombre, borne1, borne2)
-        if borne1 == borne2 :
+        borne1, borne2, ret = condition_jeu(saisi, nombre, borne1, borne2)
+        if ret == True :
             break
         saisi = random.randint(borne1, borne2)
         print(saisi)
-        borne1, borne2 = condition_jeu(saisi, nombre, borne1, borne2)
-        if borne1 == borne2 :
+        borne1, borne2, ret = condition_jeu(saisi, nombre, borne1, borne2)
+        if ret == True :
             break
 
 
