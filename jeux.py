@@ -1,4 +1,5 @@
 import random
+import sys
 
 def menu_personnaliser() :
     borne1 = input("Saisissez un nombre qui sera la plus petite borne :")
@@ -47,12 +48,14 @@ def jouer(borne1, borne2):
             saisi = input(invite)
         borne1, borne2, ret = condition_jeu(saisi, nombre, borne1, borne2)
         if ret == True :
-            break
+            print("Vous avez gagné\n")
+            menu_depart()
         saisi = random.randint(borne1, borne2)
         print(saisi)
         borne1, borne2, ret = condition_jeu(saisi, nombre, borne1, borne2)
         if ret == True :
-            break
+            print("L'ia a gagné\n")
+            menu_depart()
 
 
 def menu_niveau() :
@@ -86,7 +89,7 @@ def menu_depart() :
             menu_personnaliser()
             break
         elif saisie == "quitter" :
-            break
+            sys.exit()
 
 if __name__ == "__main__" :
     menu_depart()
